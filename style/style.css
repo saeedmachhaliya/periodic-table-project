@@ -1,0 +1,125 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+
+header {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.specialHeader {
+        background-color: #4CAF50;
+        color: white;
+        align-items: center;
+        font-style: italic;
+        font-family: Georgia, 'Times New Roman', Times, serif;
+        font-size: 50px;
+        padding: 10px 20px;}
+
+
+.logo img {
+    width: 50px; /* Adjust logo size */
+    height: auto;
+}
+
+nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+
+nav ul li {
+    margin: 0 15px;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+}
+
+nav ul li a:hover {
+    text-decoration: underline;
+}
+
+
+
+main {
+    padding: 20px;
+    background-image: url('../assets/backmain.jpg'); /* Path to your background image */
+    background-size: cover;
+    background-position: center; /* Center the image */
+    color: white; 
+}
+
+section {
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background for readability */
+    padding: 20px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+
+h2 {
+    color: #fff; /* White color for headings */
+}
+
+.btn {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+.footer {
+  background-color: #111;
+  color: #eee;
+  padding: 20px 10px;
+  font-size: 14px;
+}
+
+.footer-content {
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 20px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.footer-section h3 {
+  margin-bottom: 8px;
+  font-size: 15px;
+  color: #fff;
+}
+
+.footer-section p {
+  margin: 4px 0;
+  color: #ccc;
+}
+
+.footer-section img {
+  width: 28px;
+  height: 28px;
+  margin-top: 5px;
+  transition: transform 0.2s ease;
+}
+
+.footer-section img:hover {
+  transform: scale(1.1);
+}
+
+.footer-bottom {
+  text-align: center;
+  margin-top: 15px;
+  font-size: 13px;
+  color: #aaa;
+}

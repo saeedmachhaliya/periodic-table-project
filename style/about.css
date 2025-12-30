@@ -1,0 +1,61 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+
+header {
+    background-color: #4CAF50;
+    
+}
+.head {
+    background-color: #4CAF50;
+    color: white;
+    text-align: center;
+    padding: 20px;
+}
+
+main {
+    padding: 20px;
+    background-color: rgb(156, 217, 211);
+}
+
+
+.inventor {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.inventor img {
+    width: 200px; /* Adjust the size of the image */
+    height: auto;
+    border-radius: 50%; /* Make the image circular */
+    margin: 20px 0;
+}
+
+h2 {
+    color: #333;
+    margin-top: 20px;
+}
+
+.definition, .historical-background, .mendeleev-contributions, .significance, .modern-table {
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 15px;
+    margin-bottom: 20px;
+}
+
+ul {
+    list-style-type: disc;
+    margin-left: 20px;
+}
+
+footer {
+    text-align: center;
+    padding: 10px;
+    background-color: #222;
+    color: white;
+    position: relative;
+}
