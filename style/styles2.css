@@ -1,226 +1,286 @@
+/* =============================================
+   MODAL — COSMIC DARK THEME
+   ============================================= */
 
-
+/* ─── OVERLAY ─── */
 .modalContainer {
-    display: none;
-    background-color: white;
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    z-index: 100;
-    background-color: rgba(190, 190, 190, 0.835);
-
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  background: rgba(5, 7, 15, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  animation: fadeIn 0.2s ease;
 }
 
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* ─── MODAL CARD ─── */
 .modal {
-    color: white;
-    padding-right: 20px;
-    padding-left: 30px;
-    padding-top: 20px;
-    padding-bottom: 5px;
-    border-radius: 20px;
-    max-width: 700px;
-    height: 420px;
-    
-    margin: auto;
-    background-color: white;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%) scale(0.9);
-    background-color: rgb(5, 5, 5);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: linear-gradient(145deg, #0d1117 0%, #111827 100%);
+  border: 1px solid rgba(124, 58, 237, 0.35);
+  border-radius: 16px;
+  max-width: 680px;
+  width: 90%;
+  height: auto;
+  max-height: 85vh;
+  padding: 28px 32px 20px;
+  color: #e2e8f0;
+  box-shadow:
+    0 0 0 1px rgba(124,58,237,0.12),
+    0 25px 60px rgba(0,0,0,0.7),
+    0 0 80px rgba(124,58,237,0.08),
+    inset 0 1px 0 rgba(255,255,255,0.05);
+  animation: modalIn 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
 }
 
+@keyframes modalIn {
+  from { transform: translate(-50%, -50%) scale(0.88); opacity: 0; }
+  to   { transform: translate(-50%, -50%) scale(1);   opacity: 1; }
+}
 
+/* Subtle top gradient accent */
+.modal::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg,
+    transparent 0%,
+    rgba(124,58,237,0.6) 30%,
+    rgba(6,182,212,0.6) 70%,
+    transparent 100%
+  );
+}
 
+/* ─── MODAL HEADING AREA ─── */
+.modalHeadingContainer {
+  display: flex;
+  align-items: flex-end;
+  gap: 0;
+  margin-bottom: 0;
+  flex-shrink: 0;
+}
+
+.modalElementSymbol {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 2.6rem;
+  font-weight: 700;
+  width: 80px;
+  height: 66px;
+  padding: 4px;
+  border: 3px solid rgba(124,58,237,0.6);
+  border-radius: 10px;
+  border-bottom-right-radius: 0;
+  background: rgba(124,58,237,0.08);
+  flex-shrink: 0;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.modalHeading {
+  flex: 1;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 1.15rem;
+  font-weight: 600;
+  letter-spacing: 2px;
+  padding-bottom: 10px;
+  padding-left: 24px;
+  border-bottom: 3px solid rgba(124,58,237,0.6);
+  transform: translateX(-3px);
+  color: #e2e8f0;
+  text-transform: uppercase;
+  transition: border-color 0.3s ease;
+}
+
+/* ─── INFO SECTION (scrollable) ─── */
 .modal .infoSection {
-    max-height: 60%;
-    overflow-y: auto;
-    scrollbar-width: thin;
-    overflow-y: auto;
-    height: 75%;
-    margin-top: 25px;
-    margin-bottom: 20px;
-    word-spacing: 2px;
-    padding-right: 5px;
-    padding-left:5px ;
-  }
+  flex: 1;
+  overflow-y: auto;
+  padding: 18px 4px 12px;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(124,58,237,0.4) rgba(255,255,255,0.03);
+}
 
 .modal .infoSection::-webkit-scrollbar {
-    width: 10px;
-  }
-  
-  .modal .infoSection::-webkit-scrollbar-track {
-    background-color: rgb(235, 235, 235);
-  }
-  
-  .modal .infoSection::-webkit-scrollbar-thumb {
-    background-color: rgb(150, 150, 150);
-    border-radius: 5px;
-    transition: .2s;
-
-  }
-  
-  .modal::-webkit-scrollbar-thumb:hover {
-    transition: .2s;
-    background-color: rgb(120, 120, 120);
-  }
-.modalHeadingContainer{
-    display: flex;
-    align-items: flex-end;
-    margin-top: 10px;
+  width: 6px;
 }
-  
-  .modalElementSymbol{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 2.8rem;
-    width: 75px;
-    height: 60px;
-    padding-top: 5px;
-    padding-left: 2px;
-    padding-right: 2px;
-    border: 5px solid white;
-    border-radius: 10px;
-    border-bottom-right-radius: 0;
-    font-family: 'Comfortaa', cursive, 'Courier New', Courier, monospace;
-
-  }
-
-  .modalHeading{
-    width: 75%;
-    font-size: 1.2rem;
-    letter-spacing: 1px;
-    padding-bottom:10px;
-    padding-left: 30px;
-    border-bottom: 5px solid white;
-    transform: translateX(-15px);
-    font-family: 'Comfortaa', cursive, 'Courier New', Courier, monospace;
-  }
-
-  .modalLabel{
-    font-size: 1rem;
-    font-weight: 700;
-    margin-bottom: 5px;
-  }
-
-  .modalInfo {
-    color: rgb(190, 190, 190);
-    font-size: 1.1rem;
-    font-weight: 100;
-    margin-left: 10px;
-
-  }
-
-  .elementHistory,
-  .elementFacts{
-    margin-top: 5px;
-    padding-right: 10px;
-  }
-
-  .modalButton{
-    font-family: 'Comfortaa', cursive;
-    font-weight: 600;
-    width: 150px;
-    padding: 3px;
-    padding-right: 10px;
-    padding-left: 10px;
-    margin-left: 10px;
-    margin-right: 10px;
-    border-radius: 50px;
-    cursor: pointer;
-    background-color: rgb(255, 255, 255);
-    transition: .2s;
-  }
-  .modalButton:hover{
-    box-shadow: 0 0 5px rgba(255, 255, 255, 0.9);
-  }
-
-  .modalButton:active{
-    background-color: rgb(225, 225, 225);
-  }
-
-  .closeButton {
-    position: absolute;
-    top: 15px;
-    right: 15px;
-    width: 30px;
-    height: 30px;
-    border-radius: 50%;
-    background-color: #ccc;
-    border: none;
-    color: #fff;
-    font-size: 18px;
-    text-align: center;
-    line-height: 30px;
-    background-color: rgb(254, 39, 20);
-    cursor: pointer;
-    transition: .2s;
+.modal .infoSection::-webkit-scrollbar-track {
+  background: rgba(255,255,255,0.03);
+  border-radius: 3px;
+}
+.modal .infoSection::-webkit-scrollbar-thumb {
+  background: rgba(124,58,237,0.45);
+  border-radius: 3px;
+  transition: background 0.2s;
+}
+.modal .infoSection::-webkit-scrollbar-thumb:hover {
+  background: rgba(124,58,237,0.7);
 }
 
-.closeButton:hover{
-    box-shadow: 0 0 5px rgba(255, 255, 255, 0.9);
+/* ─── MODAL LABELS & INFO ─── */
+.modalLabel {
+  font-family: 'Exo 2', sans-serif;
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: rgba(124,58,237,0.9);
+  margin-bottom: 6px;
+  transition: color 0.3s ease;
 }
 
-.closeButton:active{
-    background-color: rgb(237, 35, 17);
-    box-shadow: 0 0 5px rgba(115, 115, 115, 0.9);
-
+.modalInfo {
+  font-family: 'Exo 2', sans-serif;
+  color: #94a3b8;
+  font-size: 1rem;
+  font-weight: 400;
+  margin-left: 8px;
 }
 
+.elementHistory,
+.elementFacts {
+  margin-top: 6px;
+  padding-right: 8px;
+  font-size: 0.92rem;
+  line-height: 1.7;
+  color: #94a3b8;
+  margin-left: 0;
+}
 
+/* Data rows layout */
+.modalLabel:not(.modalFactLabel) {
+  display: flex;
+  align-items: baseline;
+  gap: 0;
+  padding: 8px 12px;
+  background: rgba(255,255,255,0.025);
+  border-radius: 8px;
+  border-left: 3px solid rgba(124,58,237,0.3);
+  margin-bottom: 8px;
+  transition: border-color 0.3s;
+}
+
+.modalFactLabel {
+  display: block;
+  padding: 8px 12px 4px;
+  background: rgba(255,255,255,0.025);
+  border-radius: 8px;
+  border-left: 3px solid rgba(124,58,237,0.3);
+  margin-bottom: 8px;
+  transition: border-color 0.3s;
+}
+
+/* ─── MODAL BUTTONS ─── */
+.modalButtons {
+  display: flex;
+  gap: 12px;
+  padding-top: 16px;
+  flex-shrink: 0;
+  border-top: 1px solid rgba(255,255,255,0.06);
+}
+
+.modalButton {
+  font-family: 'Exo 2', sans-serif;
+  font-weight: 600;
+  font-size: 0.82rem;
+  letter-spacing: 0.5px;
+  flex: 1;
+  padding: 10px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  background: rgba(124,58,237,0.12);
+  color: rgba(139,92,246,0.9);
+  border: 1px solid rgba(124,58,237,0.3);
+  transition: all 0.25s ease;
+}
+
+.modalButton:hover {
+  background: rgba(124,58,237,0.22);
+  color: #a78bfa;
+  border-color: rgba(124,58,237,0.6);
+  box-shadow: 0 0 16px rgba(124,58,237,0.2);
+  transform: translateY(-1px);
+}
+
+.modalButton:active {
+  transform: translateY(0);
+  background: rgba(124,58,237,0.3);
+}
+
+/* ─── CLOSE BUTTON ─── */
+.closeButton {
+  position: absolute;
+  top: 16px;
+  right: 18px;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: rgba(244,63,94,0.15);
+  border: 1px solid rgba(244,63,94,0.35);
+  color: #f43f5e;
+  font-size: 16px;
+  text-align: center;
+  line-height: 30px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  z-index: 10;
+}
+
+.closeButton:hover {
+  background: rgba(244,63,94,0.3);
+  border-color: #f43f5e;
+  box-shadow: 0 0 16px rgba(244,63,94,0.35);
+  transform: rotate(90deg) scale(1.1);
+}
+
+.closeButton:active {
+  transform: rotate(90deg) scale(0.95);
+}
+
+/* ─── MOBILE MODAL ─── */
 @media (max-width: 767px) {
   .modal {
-    width: 70%;
+    width: 90%;
     max-width: none;
-    height: 80vh;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: rgb(5, 5, 5);
+    height: 82vh;
+    max-height: 82vh;
+    padding: 22px 20px 16px;
   }
 
-   .modalFactLabel{
-margin-top: 20px;
+  .modalElementSymbol {
+    width: 66px;
+    height: 56px;
+    font-size: 2rem;
   }
 
-  .modalInfo {
-    color: rgb(190, 190, 190);
-    font-size: .95rem;
-    font-weight: 100;
-    margin-left: 6px;
-
-  }
-
-  .elementFacts,
-  .elementHistory {
-    margin-left: 0;
+  .modalHeading {
+    font-size: 0.95rem;
+    padding-left: 16px;
+    letter-spacing: 1px;
   }
 
   .modalButton {
-    display: flex;
-    justify-content: center; /* Add this line */
-    align-items: center; /* Add this line */
-    width: 180px;
-    padding: 4px;
-    padding-right: 10px;
-    padding-left: 10px;
-    margin: 0 auto;
-    cursor: pointer;
-    background-color: rgb(255, 255, 255);
-    transition: 0.2s;
-}
+    font-size: 0.78rem;
+  }
 
-.previousButton{
-    margin-top: 40px;
-    margin-bottom: 10px;
-}
-
-.closeButton {
-    top: 25px;
-    right: 25px;
-}
-
+  .closeButton {
+    top: 20px;
+    right: 20px;
+  }
 }

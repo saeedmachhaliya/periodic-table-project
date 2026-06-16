@@ -1,379 +1,161 @@
-// const tileArray = document.querySelectorAll(".elementTile");
-// const modalContainer = document.querySelector(".modalContainer");
-// const closeButton = document.querySelector(".closeButton");
-// const previousButton = document.querySelector(".previousButton");
-// const nextButton = document.querySelector(".nextButton");
-// const modalFactLabel = document.querySelector(".modalFactLabel");
-// const elementalGroup = document.querySelector(".elementalGroup");
-// const elementState = document.querySelector(".elementState");
-// const modalLabels = document.querySelectorAll(".modalLabel");
+// ============================================================
+//  PERIODIC TABLE — Interactive Element Explorer
+//  Cosmic Dark Theme · app.js
+// ============================================================
 
-// const modalHeading = document.querySelector(".modalHeading");
-// const modalElementSymbol = document.querySelector(".modalElementSymbol");
-// const atomicNumber = document.querySelector(".atomicNumber");
-// const yearDiscovered = document.querySelector(".yearDiscovered");
-// const elementFacts = document.querySelector(".elementFacts");
-// const elementHistory = document.querySelector(".elementHistory");
-// const url = 'https://periodic-table-data-api-all-118-chemical-elements.p.rapidapi.com/api/v1/elements/category/noble_gas';
+// ─── DOM REFERENCES ─────────────────────────────────────────
+const tileArray        = document.querySelectorAll(".elementTile");
+const modalContainer   = document.querySelector(".modalContainer");
+const closeButton      = document.querySelector(".closeButton");
+const previousButton   = document.querySelector(".previousButton");
+const nextButton       = document.querySelector(".nextButton");
+const modalFactLabel   = document.querySelector(".modalFactLabel");
+const modalLabels      = document.querySelectorAll(".modalLabel");
 
-
-// //variable to check if the user has clicked on a tile yet , will update with the value of the clicked tile 
-// let selectedTileIndex = null;
-
-// //a for loop to add the event listener to each element tile
-// for (let i = 0; i < tileArray.length; i++) {
-//     const tile = tileArray[i];
-
-//     //Variable to assign the element number of the clicked tile, as the tiles in the tile array are not in the same ordr as the element numbers,
-//     // Element numbers will be needed to render the displayed info from the API 
-//     const clickedElementNumber = tile.querySelector(".elementNumber").innerText;
-//     const clickedElementalGroup = tile.getAttribute("title");
-
-//     tile.addEventListener("click", () => {
-
-//         //make the modal visible
-//         modalContainer.style.display = "block";
-//         selectedTileIndex = i;
-
-//         //details from the API page
-//         const options = {
-//             method: 'GET',
-//             headers: {
-//                 'x-rapidapi-key': 'd7cd49442fmshfe699797b9904e5p1a766ejsn8375bb11f265',
-//                 'x-rapidapi-host': 'periodic-table-data-api-all-118-chemical-elements.p.rapidapi.com'
-//             }
-//         };
-
-//         //fetch the data from the periodicTable API
-//         const fetchData = async () => {
-//             try {
-//                 const response = await fetch(url, options);
-//                 const result = await response.text();
-//                 return result;
-//             } catch (error) {
-//                 console.error(error);
-//             }
-//         };
-
-//         const allElements = fetchData();
-
-//         allElements.then(result => {
-//             const parsedResult = JSON.parse(result);
-//             const clickedElement = parsedResult[clickedElementNumber - 1];
-
-//             // change the innerText and innerHTML to the relevant info for the element in question
-//             modalElementSymbol.innerText = clickedElement.symbol;
-//             modalHeading.innerText = clickedElement.name;
-//             atomicNumber.innerText = clickedElement.atomicNumber;
-//             elementalGroup.innerText = clickedElementalGroup;
-//             elementState.innerText = clickedElement.standardState;
-//             yearDiscovered.innerText = clickedElement.yearDiscovered;
-
-
-//             //conditional to change the heading border colours depending on the element being rendered. 
-//             if (clickedElementalGroup === "Non-Metal") {
-//                 modalElementSymbol.style.borderColor = "rgb(251, 251, 137)";
-//                 modalHeading.style.borderBottomColor = "rgb(251, 251, 137)";
-//             }
-//             else if (clickedElementalGroup === "Noble Gas") {
-//                 modalElementSymbol.style.borderColor = "rgb(255, 162, 126)";
-//                 modalHeading.style.borderBottomColor = "rgb(255, 162, 126)";
-
-//             }
-//             else if (clickedElementalGroup === "Alkali Metal") {
-//                 modalElementSymbol.style.borderColor = "rgb(204, 95, 95)";
-//                 modalHeading.style.borderBottomColor = "rgb(204, 95, 95)";
-//             }
-//             else if (clickedElementalGroup === "Alkaline Earth Metal") {
-//                 modalElementSymbol.style.borderColor = "rgb(141, 41, 235)";
-//                 modalHeading.style.borderBottomColor = "rgb(141, 41, 235)";
-//             }
-//             else if (clickedElementalGroup === "Metalloid") {
-//                 modalElementSymbol.style.borderColor = "rgb(49, 169, 49)";
-//                 modalHeading.style.borderBottomColor = "rgb(49, 169, 49)";
-//             }
-//             else if (clickedElementalGroup === "Post Transition Metal") {
-//                 modalElementSymbol.style.borderColor = "rgb(161, 251, 27)";
-//                 modalHeading.style.borderBottomColor = "rgb(161, 251, 27)";
-//             }
-//             else if (clickedElementalGroup === "Halogen") {
-//                 modalElementSymbol.style.borderColor = " rgb(218, 255, 54)";
-//                 modalHeading.style.borderBottomColor = " rgb(218, 255, 54)";
-//             }
-//             else if (clickedElementalGroup === "Transition Metal") {
-//                 modalElementSymbol.style.borderColor = " rgb(71, 203, 247)";
-//                 modalHeading.style.borderBottomColor = " rgb(71, 203, 247)";
-//             }
-//             else if (clickedElementalGroup === "Lanthanide") {
-//                 modalElementSymbol.style.borderColor = " rgb(82, 82, 236)";
-//                 modalHeading.style.borderBottomColor = " rgb(82, 82, 236)";
-//             }
-//             else if (clickedElementalGroup === "Actinide") {
-//                 modalElementSymbol.style.borderColor = "rgb(244, 171, 60);";
-//                 modalHeading.style.borderBottomColor = "rgb(244, 171, 60);";
-//             }
-
-//             //conditional in a forEach to change the colour of the modal labels depending on the colour of the class of element being rendered.
-//             modalLabels.forEach(label => {
-//                 if (clickedElementalGroup === "Non-Metal") {
-//                     label.style.color = "rgb(251, 251, 137)";
-//                 } else if (clickedElementalGroup === "Noble Gas") {
-//                     label.style.color = "rgb(255, 162, 126)";
-//                 } else if (clickedElementalGroup === "Alkali Metal") {
-//                     label.style.color = "rgb(204, 95, 95)";
-//                 } else if (clickedElementalGroup === "Alkaline Earth Metal") {
-//                     label.style.color = "rgb(141, 41, 235)";
-//                 } else if (clickedElementalGroup === "Metalloid") {
-//                     label.style.color = "rgb(49, 169, 49)";
-//                 } else if (clickedElementalGroup === "Post Transition Metal") {
-//                     label.style.color = "rgb(161, 251, 27)";
-//                 } else if (clickedElementalGroup === "Halogen") {
-//                     label.style.color = "rgb(218, 255, 54)";
-//                 } else if (clickedElementalGroup === "Transition Metal") {
-//                     label.style.color = "rgb(71, 203, 247)";
-//                 } else if (clickedElementalGroup === "Lanthanide") {
-//                     label.style.color = "rgb(82, 82, 236)";
-//                 } else if (clickedElementalGroup === "Actinide") {
-//                     label.style.color = "rgb(244, 171, 60)";
-//                 }
-//             });
-
-
-//             // Not all elements on the API call have facts, If there are none, then dont show any on the page
-//             if (clickedElement.facts === "") {
-//                 modalFactLabel.style.display = "none";
-//                 elementFacts.innerText = "";
-//             } else {
-
-//                 modalFactLabel.style.display = "block"
-//                 //using DOMpurify to sanitise the data going into the innerHTML to prevent scripting attacks
-//                 elementFacts.innerHTML = `${DOMPurify.sanitize(clickedElement.facts)}`;
-//             }
-//             //using DOMpurify to sanitise the data going into the innerHTML to prevent scripting attacks
-//             elementHistory.innerHTML = `${DOMPurify.sanitize(clickedElement.history)}`;
-
-//         });
-//     });
-// }
-
-
-
-
-// // Function for when the previous button is clicked 
-// const handlePreviousButtonClick = () => {
-//     if (selectedTileIndex !== null) {
-//         // Decrease the index number to get the previous element
-//         selectedTileIndex--;
-
-//         if (selectedTileIndex < 0) {
-//             // If index is smaller than 0, set it to the maximum index number , to go to the last element 
-//             selectedTileIndex = tileArray.length - 1;
-//         }
-
-//         const previousTile = tileArray[selectedTileIndex];
-//         // Trigger a click event on the previous tile to populate it
-//         previousTile.click();
-//     }
-// };
-
-// // Function for when the next button is clicked 
-// const handleNextButtonClick = () => {
-//     if (selectedTileIndex !== null) {
-
-//         // Increase the index number to get the next element
-//         selectedTileIndex++;
-//         if (selectedTileIndex >= tileArray.length) {
-//             // If index is larger than the tileArray length, reset it to 0, which will render the first element again
-//             selectedTileIndex = 0;
-//         }
-
-//         const nextTile = tileArray[selectedTileIndex];
-//         // Trigger a click event on the next tile to populate it
-//         nextTile.click();
-//     }
-// };
-
-// // Add eventlistener to the buttons to listen for a mouse click 
-// previousButton.addEventListener("click", handlePreviousButtonClick);
-// nextButton.addEventListener("click", handleNextButtonClick);
-
-// //Adding a keydown event listener to the document
-// document.addEventListener("keydown", (event) => {
-//     // Check if the left arrow key was pressed
-//     if (event.key === "ArrowLeft") {
-//         handlePreviousButtonClick();
-//     }
-
-//     // Check if the right arrow key was pressed
-//     if (event.key === "ArrowRight") {
-//         handleNextButtonClick();
-//     }
-// });
-
-
-// //
-// closeButton.addEventListener("click", () => {
-//     modalContainer.style.display = "none";
-// });
-// =====================
-// DOM ELEMENTS
-// =====================
-const tileArray = document.querySelectorAll(".elementTile");
-const modalContainer = document.querySelector(".modalContainer");
-const closeButton = document.querySelector(".closeButton");
-const previousButton = document.querySelector(".previousButton");
-const nextButton = document.querySelector(".nextButton");
-const modalFactLabel = document.querySelector(".modalFactLabel");
-const elementalGroup = document.querySelector(".elementalGroup");
-const elementState = document.querySelector(".elementState");
-const modalLabels = document.querySelectorAll(".modalLabel");
-
-const modalHeading = document.querySelector(".modalHeading");
+const modalHeading     = document.querySelector(".modalHeading");
 const modalElementSymbol = document.querySelector(".modalElementSymbol");
-const atomicNumber = document.querySelector(".atomicNumber");
-const yearDiscovered = document.querySelector(".yearDiscovered");
-const elementFacts = document.querySelector(".elementFacts");
-const elementHistory = document.querySelector(".elementHistory");
+const atomicNumber     = document.querySelector(".atomicNumber");
+const elementalGroup   = document.querySelector(".elementalGroup");
+const elementState     = document.querySelector(".elementState");
+const yearDiscovered   = document.querySelector(".yearDiscovered");
+const elementFacts     = document.querySelector(".elementFacts");
+const elementHistory   = document.querySelector(".elementHistory");
 
-// =====================
-// WORKING CORS-SAFE API
-// =====================
-const url =
+// ─── DATA SOURCE (CORS-safe, no API key needed) ─────────────
+const DATA_URL =
   "https://raw.githubusercontent.com/Bowserinator/Periodic-Table-JSON/master/PeriodicTableJSON.json";
 
-// =====================
-// STATE
-// =====================
+// ─── STATE ──────────────────────────────────────────────────
 let selectedTileIndex = null;
-let allElementsData = null;
+let allElementsData   = null;
 
-// =====================
-// FETCH ELEMENTS ONCE
-// =====================
-const fetchAllElements = async () => {
+// ─── FETCH (cached) ─────────────────────────────────────────
+async function fetchAllElements() {
   if (allElementsData) return allElementsData;
-
   try {
-    const response = await fetch(url);
-    const data = await response.json();
+    const response = await fetch(DATA_URL);
+    const data     = await response.json();
     allElementsData = data.elements;
     return allElementsData;
-  } catch (error) {
-    console.error("Fetch error:", error);
+  } catch (err) {
+    console.error("Failed to fetch element data:", err);
   }
-};
-
-// =====================
-// COLOR MAPPING
-// =====================
-const getGroupColor = (group) => {
-  const colors = {
-    "Non-Metal": "rgb(251, 251, 137)",
-    "Noble Gas": "rgb(255, 162, 126)",
-    "Alkali Metal": "rgb(204, 95, 95)",
-    "Alkaline Earth Metal": "rgb(141, 41, 235)",
-    "Metalloid": "rgb(49, 169, 49)",
-    "Post Transition Metal": "rgb(161, 251, 27)",
-    "Halogen": "rgb(218, 255, 54)",
-    "Transition Metal": "rgb(71, 203, 247)",
-    "Lanthanide": "rgb(82, 82, 236)",
-    "Actinide": "rgb(244, 171, 60)"
-  };
-
-  return colors[group] || "#fff";
-};
-
-// =====================
-// TILE CLICK HANDLER
-// =====================
-for (let i = 0; i < tileArray.length; i++) {
-  const tile = tileArray[i];
-  const clickedElementNumber = Number(
-    tile.querySelector(".elementNumber").innerText
-  );
-  const clickedElementalGroup = tile.getAttribute("title");
-
-  tile.addEventListener("click", async () => {
-    modalContainer.style.display = "block";
-    selectedTileIndex = i;
-
-    const elements = await fetchAllElements();
-    if (!elements) return;
-
-    const clickedElement = elements.find(
-      (el) => el.number === clickedElementNumber
-    );
-
-    // =====================
-    // SET MODAL DATA
-    // =====================
-    modalElementSymbol.innerText = clickedElement.symbol;
-    modalHeading.innerText = clickedElement.name;
-    atomicNumber.innerText = clickedElement.number;
-    elementalGroup.innerText = clickedElementalGroup;
-    elementState.innerText = clickedElement.phase || "N/A";
-    yearDiscovered.innerText =
-      clickedElement.discovered_by || "Unknown";
-
-    // =====================
-    // COLORS
-    // =====================
-    const color = getGroupColor(clickedElementalGroup);
-    modalElementSymbol.style.borderColor = color;
-    modalHeading.style.borderBottomColor = color;
-
-    modalLabels.forEach((label) => {
-      label.style.color = color;
-    });
-
-    // =====================
-    // FACTS / HISTORY
-    // =====================
-    if (!clickedElement.summary) {
-      modalFactLabel.style.display = "none";
-      elementFacts.innerText = "";
-    } else {
-      modalFactLabel.style.display = "block";
-      elementFacts.innerText = clickedElement.summary;
-    }
-
-    elementHistory.innerText = clickedElement.summary || "";
-  });
 }
 
-// =====================
-// PREVIOUS / NEXT
-// =====================
-const handlePreviousButtonClick = () => {
-  if (selectedTileIndex === null) return;
-
-  selectedTileIndex =
-    (selectedTileIndex - 1 + tileArray.length) % tileArray.length;
-  tileArray[selectedTileIndex].click();
+// ─── COLOR MAP (matches CSS class colors) ───────────────────
+const GROUP_COLORS = {
+  "Non-Metal":           "#eab308",   // yellow
+  "Noble Gas":           "#ec4899",   // pink
+  "Alkali Metal":        "#ef4444",   // red
+  "Alkaline Earth Metal":"#8b5cf6",   // violet
+  "Metalloid":           "#14b8a6",   // teal
+  "Post Transition Metal":"#84cc16",  // lime
+  "Halogen":             "#f97316",   // orange
+  "Transition Metal":    "#0ea5e9",   // sky blue
+  "Lanthanide":          "#6366f1",   // indigo
+  "Actinide":            "#f59e0b",   // amber
 };
 
-const handleNextButtonClick = () => {
-  if (selectedTileIndex === null) return;
+function getGroupColor(group) {
+  return GROUP_COLORS[group] || "#7c3aed";
+}
 
-  selectedTileIndex =
-    (selectedTileIndex + 1) % tileArray.length;
-  tileArray[selectedTileIndex].click();
-};
+// ─── POPULATE MODAL ─────────────────────────────────────────
+async function openModal(tileIndex) {
+  const tile               = tileArray[tileIndex];
+  const clickedElementNum  = Number(tile.querySelector(".elementNumber").innerText);
+  const clickedGroup       = tile.getAttribute("title");
 
-previousButton.addEventListener("click", handlePreviousButtonClick);
-nextButton.addEventListener("click", handleNextButtonClick);
+  // Show overlay immediately
+  modalContainer.style.display = "block";
+  selectedTileIndex = tileIndex;
 
-// =====================
-// KEYBOARD NAVIGATION
-// =====================
-document.addEventListener("keydown", (event) => {
-  if (event.key === "ArrowLeft") handlePreviousButtonClick();
-  if (event.key === "ArrowRight") handleNextButtonClick();
+  // Fetch data
+  const elements = await fetchAllElements();
+  if (!elements) return;
+
+  const el = elements.find(e => e.number === clickedElementNum);
+  if (!el) return;
+
+  // ── Populate fields ──
+  modalElementSymbol.innerText = el.symbol;
+  modalHeading.innerText       = el.name;
+  atomicNumber.innerText       = el.number;
+  elementalGroup.innerText     = clickedGroup;
+  elementState.innerText       = el.phase       || "Unknown";
+  yearDiscovered.innerText     = el.discovered_by || "Unknown";
+
+  // ── Apply accent color ──
+  const color = getGroupColor(clickedGroup);
+
+  modalElementSymbol.style.borderColor    = color;
+  modalElementSymbol.style.boxShadow      = `0 0 16px ${color}40`;
+  modalHeading.style.borderBottomColor    = color;
+
+  modalLabels.forEach(label => {
+    label.style.borderLeftColor = color;
+    // Only color the label text (not the span.modalInfo inside it)
+    label.style.color = color;
+  });
+  // Reset .modalInfo spans to muted color
+  document.querySelectorAll(".modalInfo").forEach(info => {
+    info.style.color = "#94a3b8";
+  });
+
+  // ── Facts / Summary ──
+  if (el.summary) {
+    modalFactLabel.style.display = "block";
+    elementFacts.textContent     = el.summary;
+    elementHistory.textContent   = el.summary;
+  } else {
+    modalFactLabel.style.display = "none";
+    elementFacts.textContent     = "";
+    elementHistory.textContent   = "No detailed history available.";
+  }
+
+  // Scroll infoSection back to top on each open
+  const infoSection = document.querySelector(".infoSection");
+  if (infoSection) infoSection.scrollTop = 0;
+}
+
+// ─── TILE CLICK LISTENERS ────────────────────────────────────
+tileArray.forEach((tile, index) => {
+  tile.addEventListener("click", () => openModal(index));
 });
 
-// =====================
-// CLOSE MODAL
-// =====================
-closeButton.addEventListener("click", () => {
+// ─── CLOSE MODAL ────────────────────────────────────────────
+function closeModal() {
   modalContainer.style.display = "none";
+}
+
+closeButton.addEventListener("click", closeModal);
+
+// Close when clicking the dark overlay (outside the card)
+modalContainer.addEventListener("click", (e) => {
+  if (e.target === modalContainer) closeModal();
+});
+
+// ─── PREVIOUS / NEXT ────────────────────────────────────────
+function handlePrev() {
+  if (selectedTileIndex === null) return;
+  selectedTileIndex = (selectedTileIndex - 1 + tileArray.length) % tileArray.length;
+  openModal(selectedTileIndex);
+}
+
+function handleNext() {
+  if (selectedTileIndex === null) return;
+  selectedTileIndex = (selectedTileIndex + 1) % tileArray.length;
+  openModal(selectedTileIndex);
+}
+
+previousButton.addEventListener("click", handlePrev);
+nextButton.addEventListener("click", handleNext);
+
+// ─── KEYBOARD NAVIGATION ────────────────────────────────────
+document.addEventListener("keydown", (e) => {
+  switch (e.key) {
+    case "ArrowLeft":  handlePrev();  break;
+    case "ArrowRight": handleNext();  break;
+    case "Escape":     closeModal();  break;
+  }
 });

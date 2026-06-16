@@ -1,74 +1,84 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Periodic Table</title>
-    <link rel="stylesheet" href="style/style.css">
-    <script src="app.js"></script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Explore all 118 chemical elements with their properties, history, and facts — in a stunning interactive periodic table." />
+  <title>Periodic Table — Interactive Element Explorer</title>
+  <link rel="icon" href="assets/periodic-table.png" type="image/png" />
+  <link rel="stylesheet" href="style/style.css" />
 </head>
 <body>
-    <header>
-        <div class="logo">
-            <a href="index.html"><img src="assets/periodic-table.png" alt="Logo" class="img-fluid" /></a>
-            <h1>Periodic Table</h1>
-        </div>
-        <nav>
-            <ul>
-                <li><a href="#home">Home</a></li>
-                <li><a href="periodicTable.html">Periodic Table</a></li>
-                <li><a href="about.html">about Periodic Table</a></li>
-            </ul>
-        </nav>
-    </header>
 
-    <main>
-        <section id="home">
-            <h2>Welcome to the Periodic Table</h2>
-            <p>All  elements with their properties in a user-friendly format.</p>
-            <a href="assets/PeriodicTable.png" class="btn">View the Periodic Table Chart</a>
-            <a href="assets/PeriodicTableMuted2018.pdf" class="btn">View the Periodic Table In pdf</a>
-            <a href="https://byjus.com/periodic-table/" class="btn">Details Of Each Element Online </a>
+  <!-- ═══════════════════════ HEADER ═══════════════════════ -->
+  <header>
+    <div class="logo">
+      <a href="index.html"><img src="assets/periodic-table.png" alt="Periodic Table Logo" /></a>
+      <h1>Periodic Table</h1>
+    </div>
+    <nav aria-label="Main navigation">
+      <ul>
+        <li><a href="#home">Home</a></li>
+        <li><a href="periodicTable.html">Explore Table</a></li>
+        <li><a href="about.html">About</a></li>
+      </ul>
+    </nav>
+  </header>
 
+  <!-- ═══════════════════════ MAIN ═══════════════════════ -->
+  <main>
 
-        </section>
+    <!-- Hero Section -->
+    <section id="home">
+      <h2>Explore the Building<br/>Blocks of the Universe</h2>
+      <p>Discover all 118 chemical elements — their properties, discovery stories, and atomic secrets — in a beautifully crafted interactive experience.</p>
 
-        <section id="about">
-            <h2>About the Periodic Table</h2>
-            <p>The periodic table is a tabular arrangement of the chemical elements, organized by their atomic number, electron configuration, and recurring chemical properties. It serves as a useful framework for analyzing chemical behavior.</p>
-        </section>
-    </main>
+      <div class="btn-group">
+        <a href="periodicTable.html" class="btn btn-primary" id="btn-explore-table">
+          <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+          Interactive Table
+        </a>
+        <a href="assets/PeriodicTable.png" class="btn btn-secondary" id="btn-view-chart" target="_blank">
+          <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M1 6l10 6 10-6"/><path d="M1 12l10 6 10-6"/></svg>
+          View Chart
+        </a>
+        <a href="assets/PeriodicTableMuted2018.pdf" class="btn btn-outline" id="btn-download-pdf" target="_blank">
+          <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 15V3m0 12l-4-4m4 4l4-4"/><path d="M2 17l.621 2.485A2 2 0 004.561 21h14.878a2 2 0 001.94-1.515L22 17"/></svg>
+          Download PDF
+        </a>
+      </div>
+    </section>
 
-    <footer class="footer">
+    <!-- About Blurb -->
+    <section id="about">
+      <h2>What is the Periodic Table?</h2>
+      <p>The periodic table is a tabular arrangement of the chemical elements, organized by atomic number, electron configuration, and recurring chemical properties. It remains the most powerful framework in all of chemistry — a roadmap to understanding matter itself.</p>
+    </section>
+
+  </main>
+
+  <!-- ═══════════════════════ FOOTER ═══════════════════════ -->
+  <footer class="footer">
     <div class="footer-content">
-        <div class="footer-section">
+      <div class="footer-section">
         <h3>About</h3>
         <p>Student of LJ University</p>
-        </div>
-
-        <div class="footer-section">
+        <p>Full-Stack Development · Sem III</p>
+      </div>
+      <div class="footer-section">
         <h3>Contact</h3>
         <p>Email: student@lj.com</p>
         <p>Phone: (+91) xxxxxxxx38</p>
-        </div>
-
-        <div class="footer-section">
-        <h3>Follow</h3>
-        <a
-            href="https://www.linkedin.com/in/saeed-machhaliya-464907284"
-            target="_blank"
-            aria-label="LinkedIn"
-        >
-            <img src="assets/linkedin-logo-3D.webp" alt="LinkedIn" />
+      </div>
+      <div class="footer-section">
+        <h3>Connect</h3>
+        <a href="https://www.linkedin.com/in/saeed-machhaliya-464907284" target="_blank" aria-label="LinkedIn Profile">
+          <img src="assets/linkedin-logo-3D.webp" alt="LinkedIn" />
         </a>
-        </div>
-  </div>
+      </div>
+    </div>
+    <p class="footer-bottom">© 2025 Periodic Table · All rights reserved · Saeed Machhaliya</p>
+  </footer>
 
-  <p class="footer-bottom">
-    © 2025 Periodic Table · All rights reserved
-  </p>
-</footer>
-
-    <script src="app.js"></script>
 </body>
 </html>

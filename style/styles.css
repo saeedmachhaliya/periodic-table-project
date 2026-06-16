@@ -1,396 +1,325 @@
-@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;600&display=swap');
+/* =============================================
+   PERIODIC TABLE GRID — COSMIC THEME
+   ============================================= */
 
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800&family=Exo+2:wght@300;400;600;700&family=Space+Mono:wght@400;700&display=swap');
 
 body {
-    background-color:rgb(255, 255, 255);
-    overflow-y: auto; 
-    overflow-x: auto; 
-    
-}
-.navbar {
-    background-color: #f8f9fa; /* Light background for the navbar */
-    padding: 10px 20px; /* Padding for the navbar */
+  background-color: #05070f;
+  overflow-y: auto;
+  overflow-x: auto;
 }
 
-.navbar-brand {
-    font-weight: bold;
-    font-size: 1.5em;
-}
-
-.navbar-nav .nav-item {
-    margin-right: 15px; /* Space between nav items */
-}
-
-.nav-link {
-    color: #007bff; /* Link color */
-    text-decoration: none; /* Remove underline */
-}
-
-.nav-link:hover {
-    text-decoration: underline; /* Underline on hover */
-}
-header {
-    background-color: #4CAF50;
-    color: white;
-    padding: 10px 20px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.logo img {
-    width: 50px; /* Adjust logo size */
-    height: auto;
-}
-
-h1 {
-    font-size: 2.2rem;
-    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-    font-weight: bolder;
-    text-align: center;
-    color: rgba(244, 234, 234, 0.728)  ;
-    letter-spacing: 2px;
-    text-shadow: 0 0 25px rgba(5, 175, 25, 0.701);
-}
-
-
-/* Creating the table from the divs within the periodic table class, repeating columns until there are 18
-also repeating rows until there are 10*/
+/* ─── PERIODIC TABLE GRID ─── */
 .periodicTable {
-    display: grid;
-    grid-template-columns: repeat(18, auto);
-    grid-template-rows:repeat(10, auto);
-    column-gap: 1px;
-    row-gap: 1px;
-    justify-content: center;
-    margin-top: 2rem;
-    max-width: 100%;
-    height: auto;
-    
+  display: grid;
+  grid-template-columns: repeat(18, auto);
+  grid-template-rows: repeat(10, auto);
+  column-gap: 3px;
+  row-gap: 3px;
+  justify-content: center;
+  margin: 1.5rem auto 2rem;
+  max-width: 100%;
+  height: auto;
+  padding: 0 12px;
 }
 
-/* Grouping all of the elemental classes into one declaration so as not to have to do it for each one individually.
-    I added min and max widths based on the viewport to keep the blocks looking relatively symmetrical*/
-.nobleGas, .lanthanide, .nonMetal, .alkaliMetal, .alkalineEarthMetal, .metalloid, .halogen, .transitionMetal, .postTransitionMetal, .actinide {
-    border: 2px solid rgb(255, 255, 255);
-    border-radius: 8px;
-    margin: 1px;
-    width: 60px;
-    max-width: 65px;
-    min-width: 55px;
-    height: auto;
-    
+/* ─── SHARED ELEMENT TILE BASE ─── */
+.nobleGas,
+.lanthanide,
+.nonMetal,
+.alkaliMetal,
+.alkalineEarthMetal,
+.metalloid,
+.halogen,
+.transitionMetal,
+.postTransitionMetal,
+.actinide {
+  border: 1.5px solid rgba(255, 255, 255, 0.12);
+  border-radius: 6px;
+  margin: 1px;
+  width: 62px;
+  max-width: 66px;
+  min-width: 54px;
+  height: auto;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.22s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
+.elementTile::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(255,255,255,0.15) 0%, transparent 60%);
+  pointer-events: none;
+  border-radius: inherit;
+}
 
-/* changing colour of the blocks based on the type of element*/
+/* ─── ELEMENT COLORS — COSMIC PALETTE ─── */
 
+/* Non-Metal → Electric Yellow */
 .nonMetal {
-    background-color: rgb(251, 251, 137);
-    color: black;
-    border-color: black;
-    transition: .2s;
+  background: linear-gradient(145deg, #ca8a04, #a16207);
+  border-color: rgba(234,179,8,0.5);
+  color: #fef3c7;
 }
 .nonMetal:hover {
-    color: black;
-    background-image: linear-gradient(to bottom right, rgb(251, 251, 137) 0%, rgb(238, 238, 238) 50%, rgb(251, 251, 137) 100%);
-    transform: scale(1.25);
-    transition: .2s;
-    cursor: pointer;
-    border: none;
-
+  transform: scale(1.28) translateZ(0);
+  z-index: 10;
+  box-shadow: 0 0 20px rgba(234,179,8,0.7), 0 0 40px rgba(234,179,8,0.3);
+  border-color: #eab308;
 }
 
-
+/* Noble Gas → Coral/Rose */
 .nobleGas {
-    color: black;
-    border-color:black ;
-    background-color: rgb(241, 164, 133);
-    transition: .2s;
+  background: linear-gradient(145deg, #be185d, #9d174d);
+  border-color: rgba(236,72,153,0.5);
+  color: #fce7f3;
+}
+.nobleGas:hover {
+  transform: scale(1.28) translateZ(0);
+  z-index: 10;
+  box-shadow: 0 0 20px rgba(236,72,153,0.7), 0 0 40px rgba(236,72,153,0.3);
+  border-color: #ec4899;
 }
 
-.nobleGas:hover{
-    color: black;
-    background-image: linear-gradient(to bottom right, rgb(255, 162, 126) 0%, rgb(238, 238, 238) 50%, rgb(255, 162, 126) 100%);
-    transform: scale(1.25);
-    transition: .2s;
-    cursor: pointer;
-    border: none;
-
-}
-
+/* Alkali Metal → Crimson Red */
 .alkaliMetal {
-    color: black;
-    border-color:black ;
-    background-color: rgb(158, 25, 25);
-    transition: .2s;
+  background: linear-gradient(145deg, #b91c1c, #991b1b);
+  border-color: rgba(239,68,68,0.5);
+  color: #fee2e2;
 }
 .alkaliMetal:hover {
-    color: black;
-    background-image: linear-gradient(to bottom right, rgb(158, 25, 25) 0%, rgb(238, 238, 238) 50%, rgb(158, 25, 25) 100%);
-    transform: scale(1.25);
-    transition: .2s;
-    cursor: pointer;
-    border: none;
-
+  transform: scale(1.28) translateZ(0);
+  z-index: 10;
+  box-shadow: 0 0 20px rgba(239,68,68,0.7), 0 0 40px rgba(239,68,68,0.3);
+  border-color: #ef4444;
 }
 
+/* Alkaline Earth Metal → Deep Violet */
 .alkalineEarthMetal {
-    color: black;
-    background-color: rgb(141, 41, 235);
-    border-color: black;
-    transition: .2s;
+  background: linear-gradient(145deg, #6d28d9, #5b21b6);
+  border-color: rgba(139,92,246,0.5);
+  color: #ede9fe;
 }
-
 .alkalineEarthMetal:hover {
-    color: black;
-    background-image: linear-gradient(to bottom right, rgb(141, 41, 235) 0%, rgb(238, 238, 238) 50%, rgb(141, 41, 235) 100%);
-    transform: scale(1.25);
-    transition: .2s;
-    cursor: pointer;
-    border: none;
-
+  transform: scale(1.28) translateZ(0);
+  z-index: 10;
+  box-shadow: 0 0 20px rgba(139,92,246,0.7), 0 0 40px rgba(139,92,246,0.3);
+  border-color: #8b5cf6;
 }
 
+/* Metalloid → Teal */
 .metalloid {
-    color: black;
-    background-color: rgb(49, 169, 49);
-    border-color: black;
-    transition: .2s;
+  background: linear-gradient(145deg, #0f766e, #0d6b5e);
+  border-color: rgba(20,184,166,0.5);
+  color: #ccfbf1;
 }
 .metalloid:hover {
-    color: black;
-    background-image: linear-gradient(to bottom right, rgb(49, 169, 49)0%, rgb(238, 238, 238) 50%, rgb(49, 169, 49)100%);
-    transform: scale(1.25);
-    transition: .2s;
-    cursor: pointer;
-    border: none;
-
+  transform: scale(1.28) translateZ(0);
+  z-index: 10;
+  box-shadow: 0 0 20px rgba(20,184,166,0.7), 0 0 40px rgba(20,184,166,0.3);
+  border-color: #14b8a6;
 }
 
+/* Post Transition Metal → Lime */
 .postTransitionMetal {
-    color: black;
-    border-color:black ;
-    background-color: rgb(161, 251, 27);
-    transition: .2s;
+  background: linear-gradient(145deg, #4d7c0f, #3f6212);
+  border-color: rgba(132,204,22,0.5);
+  color: #ecfccb;
 }
 .postTransitionMetal:hover {
-    color: black;
-    background-image: linear-gradient(to bottom right, rgb(161, 251, 27)0%, rgb(238, 238, 238) 50%, rgb(161, 251, 27)100%);
-    transform: scale(1.25);
-    transition: .2s;
-    cursor: pointer;
-    border: none;
-
+  transform: scale(1.28) translateZ(0);
+  z-index: 10;
+  box-shadow: 0 0 20px rgba(132,204,22,0.7), 0 0 40px rgba(132,204,22,0.3);
+  border-color: #84cc16;
 }
 
+/* Halogen → Orange */
 .halogen {
-    color: black;
-    background-color: rgb(202, 247, 4);
-    border-color: black;
-    transition: .2s;
+  background: linear-gradient(145deg, #c2410c, #9a3412);
+  border-color: rgba(249,115,22,0.5);
+  color: #ffedd5;
 }
 .halogen:hover {
-    color: black;
-    background-image: linear-gradient(to bottom right, rgb(218, 255, 54) 0%, rgb(238, 238, 238) 50%, rgb(218, 255, 54) 100%);
-    transform: scale(1.25);
-    transition: .2s;
-    cursor: pointer;
-    border: none;
-
+  transform: scale(1.28) translateZ(0);
+  z-index: 10;
+  box-shadow: 0 0 20px rgba(249,115,22,0.7), 0 0 40px rgba(249,115,22,0.3);
+  border-color: #f97316;
 }
 
+/* Transition Metal → Cyan Blue */
 .transitionMetal {
-    color: black;
-    background-color:rgb(71, 203, 247);
-    border-color: black;
-    transition: .2s;
+  background: linear-gradient(145deg, #0369a1, #075985);
+  border-color: rgba(14,165,233,0.5);
+  color: #e0f2fe;
 }
 .transitionMetal:hover {
-    color: black;
-    background-image: linear-gradient(to bottom right, rgb(71, 203, 247)  0%, rgb(238, 238, 238) 50%, rgb(71, 203, 247)  100%);
-    transform: scale(1.25);
-    transition: .2s;
-    cursor: pointer;
-    border: none;
-
+  transform: scale(1.28) translateZ(0);
+  z-index: 10;
+  box-shadow: 0 0 20px rgba(14,165,233,0.7), 0 0 40px rgba(14,165,233,0.3);
+  border-color: #0ea5e9;
 }
 
+/* Lanthanide → Indigo */
 .lanthanide {
-    color: black;
-    background-color: rgb(82, 82, 236);
-    border-color: black;
-    transition: .2s;
+  background: linear-gradient(145deg, #4338ca, #3730a3);
+  border-color: rgba(99,102,241,0.5);
+  color: #e0e7ff;
 }
-
 .lanthanide:hover {
-    color: black;
-    background-image: linear-gradient(to bottom right, rgb(82, 82, 236)   0%, rgb(238, 238, 238) 50%, rgb(82, 82, 236)   100%);
-    transform: scale(1.25);
-    transition: .2s;
-    cursor: pointer;
-    border: none;
-
+  transform: scale(1.28) translateZ(0);
+  z-index: 10;
+  box-shadow: 0 0 20px rgba(99,102,241,0.7), 0 0 40px rgba(99,102,241,0.3);
+  border-color: #6366f1;
 }
 
+/* Actinide → Amber Gold */
 .actinide {
-    color: black;
-    border-color: black;
-    background-color: rgb(244, 171, 60);
-    transition: .2s;
+  background: linear-gradient(145deg, #b45309, #92400e);
+  border-color: rgba(245,158,11,0.5);
+  color: #fef3c7;
 }
-
 .actinide:hover {
-    color: black;
-    background-image: linear-gradient(to bottom right, rgb(244, 171, 60)   0%, rgb(238, 238, 238) 50%, rgb(244, 171, 60)   100%);
-    transform: scale(1.25);
-    transition: .2s;
-    cursor: pointer;
-        border: none;
-
+  transform: scale(1.28) translateZ(0);
+  z-index: 10;
+  box-shadow: 0 0 20px rgba(245,158,11,0.7), 0 0 40px rgba(245,158,11,0.3);
+  border-color: #f59e0b;
 }
 
-/* Formatting the element number value */
+/* ─── ELEMENT TEXT ─── */
 .elementNumber {
-    font-family:  'Courier New', Courier, monospace;
-    font-size: 10px;
-    font-weight:bold;
-    padding-top: 2px;
-    padding-left: 4px;
+  font-family: 'Space Mono', monospace;
+  font-size: 9px;
+  font-weight: 700;
+  padding-top: 3px;
+  padding-left: 4px;
+  opacity: 0.85;
 }
 
-/* Formatting the element symbol - making the text relative to the screen width, so it stays large enough to read but doesnt distort the blocks */
 .elementSymbol {
-    font-family: 'Comfortaa', cursive, 'Courier New', Courier, monospace;
-    font-size: 1.4rem;
-    font-weight: bolder;
-    padding-left: 2px;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 1.3rem;
+  font-weight: 700;
+  padding-left: 3px;
+  line-height: 1.2;
 }
 
-/* Formatting the element name */
 .elementName {
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    font-size: .55rem;
-    letter-spacing: .2px;
-    padding-bottom: 3px;
-    padding-left: 1px;
-    font-weight: 100;
-    overflow: hidden;
+  font-family: 'Exo 2', sans-serif;
+  font-size: 0.48rem;
+  font-weight: 400;
+  letter-spacing: 0.3px;
+  padding-bottom: 3px;
+  padding-left: 3px;
+  padding-right: 2px;
+  opacity: 0.85;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 
-/* adding the blank space on the top row of the table using a blank div */
-.blankRow1 {
-    grid-column: 2/span 16;
-    grid-row: 1;
-}
-
-/* adding the blank space on the second row of the table using a blank div */
-.blankRow2 {
-    grid-column: 3/span 10;
-    grid-row: 2/span 2;
-}
-
-/* adding the blank space in the 3rd column, spanning 6th and 7th rows using a blank div */
-.blankRow3 {
-    grid-column: 3;
-    grid-row: 6/span 2;
-}
-
-/* adding the blank row in row 8 of the table to give the space between row 7 and 9 */
+/* ─── BLANK SPACERS ─── */
+.blankRow1 { grid-column: 2 / span 16; grid-row: 1; }
+.blankRow2 { grid-column: 3 / span 10; grid-row: 2 / span 2; }
+.blankRow3 { grid-column: 3; grid-row: 6 / span 2; }
 .blankRow4 {
-    grid-column: 1/span 18;
-    grid-row: 8;
-    margin: 6px;
+  grid-column: 1 / span 18;
+  grid-row: 8;
+  margin: 6px;
+}
+.blankRow5 { grid-column: 1 / span 3; grid-row: 9 / span 2; }
+
+/* ─── LEGEND STRIP (optional, hidden by default) ─── */
+.legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+  padding: 16px 20px;
+  margin: 0 auto 8px;
+  max-width: 1200px;
 }
 
-
-/* Adding the space at the bottom left of the table */
-.blankRow5 {
-    grid-column: 1/span 3;
-    grid-row:9/span 2;
-}
-
-
+/* ─── MOBILE ─── */
 @media (max-width: 500px) {
+  body {
+    margin: 0;
+    min-width: 340px;
+  }
 
-    body {
-        margin: 0;
-        min-width: 340px;
-    }
+  .periodicTable {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    padding-top: 0;
+    gap: 0;
+  }
 
-    .periodicTable {
-        display: flex;
-        flex-direction: column;
-        padding: 25px;
-        padding-top: 0;
-    }
+  .nobleGas,
+  .lanthanide,
+  .nonMetal,
+  .alkaliMetal,
+  .alkalineEarthMetal,
+  .metalloid,
+  .halogen,
+  .transitionMetal,
+  .postTransitionMetal,
+  .actinide {
+    width: 100%;
+    max-width: none;
+    min-width: none;
+    min-height: 56px;
+    margin-bottom: 8px;
+    border-radius: 8px;
+  }
 
+  .nobleGas:hover,
+  .lanthanide:hover,
+  .nonMetal:hover,
+  .alkaliMetal:hover,
+  .alkalineEarthMetal:hover,
+  .metalloid:hover,
+  .halogen:hover,
+  .transitionMetal:hover,
+  .postTransitionMetal:hover,
+  .actinide:hover {
+    transform: scale(1.01);
+  }
 
-    .nobleGas,
-    .lanthanide,
-    .nonMetal,
-    .alkaliMetal,
-    .alkalineEarthMetal,
-    .metalloid,
-    .halogen,
-    .transitionMetal,
-    .postTransitionMetal,
-    .actinide {
-        width: 100%;
-        max-width: none;
-        min-width: none;
-        min-height: 50px;
-        margin-bottom: 10px;
-    }
+  .blankRow1,
+  .blankRow2,
+  .blankRow3,
+  .blankRow4,
+  .blankRow5 {
+    display: none;
+  }
 
-    .nobleGas:hover,
-    .lanthanide:hover,
-    .nonMetal:hover,
-    .alkaliMetal:hover,
-    .alkalineEarthMetal:hover,
-    .metalloid:hover,
-    .halogen:hover,
-    .transitionMetal:hover,
-    .postTransitionMetal:hover,
-    .actinide:hover {
-        transform: scale(1.01);
-        border: 2px solid rgba(255, 255, 255, 0);
-    }
+  .elementTile {
+    display: flex;
+    align-items: center;
+  }
 
-    .blankRow1,
-    .blankRow2,
-    .blankRow3,
-    .blankRow4,
-    .blankRow5 {
-        display: none;
-    }
+  .elementNumber {
+    width: 10%;
+    text-align: center;
+    font-size: 1rem;
+  }
 
-    .elementTile {
-        display: flex;
-        align-items: center;
+  .elementSymbol {
+    width: 12%;
+    text-align: center;
+    font-size: 1.7rem;
+  }
 
-    }
-    .elementNumber {
-        width: 10%;
-        text-align: center;
-        font-size: 1.2rem;
-    }
-
-    .elementSymbol{
-        width: 10%;
-        text-align: center;
-        font-size: 1.8rem;
-        font-weight: bold;
-
-    }
-    .elementName {
-        width: 70%;
-        padding-left: 5%;
-        font-size: 1.3rem;
-        transform: translateY(15%);
-        letter-spacing: 2px;
-
-    }
-
+  .elementName {
+    width: 70%;
+    padding-left: 5%;
+    font-size: 1.1rem;
+    letter-spacing: 1.5px;
+    white-space: normal;
+    overflow: visible;
+  }
 }
-
